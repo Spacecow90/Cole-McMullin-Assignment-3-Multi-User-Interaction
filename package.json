@@ -12,5 +12,13 @@
     "socket.io": "^4.8.1"
   },
   "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spacecow90/Cole-McMullin-Assignment-3-Multi-User-Interaction.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Spacecow90/Cole-McMullin-Assignment-3-Multi-User-Interaction/issues"
+  },
+  "homepage": "https://github.com/Spacecow90/Cole-McMullin-Assignment-3-Multi-User-Interaction#readme",
   "description": ""
 }
