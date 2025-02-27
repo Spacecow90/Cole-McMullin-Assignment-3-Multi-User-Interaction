@@ -39,6 +39,34 @@ io.on('connection', (socket) => {
         //io.socket.emit("color_change", {r:255, g:0, b:0});  //to everyone but sender
     });
 
+    socket.on("endmaze", (data) => {
+        console.log( "maze end reached" );
+        io.emit('competitive_start', "guide");         //to all connected clients
+        //io.socket.emit("color_change", {r:255, g:0, b:0});  //to everyone but sender
+    });
+
+    // door signal codes
+    socket.on("togglered", (data) => {
+        console.log( "red door toggle" );
+        io.emit('door_control', "red");         //to all connected clients
+    });
+
+    socket.on("toggleblue", (data) => {
+        console.log( "blue door toggle" );
+        io.emit('door_control', "blue");         //to all connected clients
+    });
+
+    socket.on("togglegreen", (data) => {
+        console.log( "green door toggle" );
+        io.emit('door_control', "green");         //to all connected clients
+    });
+
+    socket.on("toggleyellow", (data) => {
+        console.log( "yellow door toggle" );
+        io.emit('door_control', "yellow");         //to all connected clients
+    });
+
+
     //question 1: how do you continuously update the network, e.g., users position and orientation?
     //question 2: how do you synch clients to current state?
 });

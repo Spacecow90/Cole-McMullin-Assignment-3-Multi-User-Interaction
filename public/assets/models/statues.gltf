@@ -3,10 +3,6 @@
 		"generator":"Khronos glTF Blender I/O v4.3.47",
 		"version":"2.0"
 	},
-	"extensionsUsed":[
-		"KHR_materials_transmission",
-		"KHR_materials_specular"
-	],
 	"scene":0,
 	"scenes":[
 		{
@@ -19,7 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"navMesh",
+			"name":"statues",
 			"rotation":[
 				0.7071068286895752,
 				0,
@@ -31,29 +27,22 @@
 	"materials":[
 		{
 			"doubleSided":true,
-			"extensions":{
-				"KHR_materials_transmission":{
-					"transmissionFactor":1
-				},
-				"KHR_materials_specular":{
-					"specularFactor":0
-				}
-			},
-			"name":"initialShadingGroup",
+			"name":"Material.001",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0,
-					0,
-					0,
+					0.008510874584317207,
+					0.00889371708035469,
+					0.010101662017405033,
 					1
 				],
-				"metallicFactor":0
+				"metallicFactor":0,
+				"roughnessFactor":0.5
 			}
 		}
 	],
 	"meshes":[
 		{
-			"name":"navMesh",
+			"name":"statues",
 			"primitives":[
 				{
 					"attributes":{
@@ -71,68 +60,68 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":18778,
+			"count":44683,
 			"max":[
-				64.49581909179688,
-				6.31594705581665,
-				0
+				63.805946350097656,
+				-23.927505493164062,
+				0.21904200315475464
 			],
 			"min":[
-				-53.19285583496094,
-				-98.454833984375,
-				0
+				-53.207794189453125,
+				-99.76585388183594,
+				-5.583357810974121
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":18778,
+			"count":44683,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":18778,
+			"count":44683,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":101796,
+			"count":70368,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":225336,
+			"byteLength":536196,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":225336,
-			"byteOffset":225336,
+			"byteLength":536196,
+			"byteOffset":536196,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":150224,
-			"byteOffset":450672,
+			"byteLength":357464,
+			"byteOffset":1072392,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":203592,
-			"byteOffset":600896,
+			"byteLength":140736,
+			"byteOffset":1429856,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":804488,
-			"uri":"navMesh.bin"
+			"byteLength":1570592,
+			"uri":"statues.bin"
 		}
 	]
 }
