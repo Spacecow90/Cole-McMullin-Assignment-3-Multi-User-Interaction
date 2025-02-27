@@ -28,15 +28,15 @@ io.on('connection', (socket) => {
         console.log( socket.id + " disconnected" );
     });
 
-    socket.on("red", (data) => {
-        console.log( "red event received" );
-        io.emit("color_change", {r:255, g:0, b:0});         //to all connected clients
+    socket.on("runner", (data) => {
+        console.log( "runner button pressed" );
+        io.emit('assignOtherRole', "runner");       //to all connected clients
         //io.socket.emit("color_change", {r:255, g:0, b:0});  //to everyone but sender
     });
-
-    socket.on("blue", (data) => {
-        console.log( "blue event received" );
-        io.emit("color_change", {r:0, g:0, b:255});
+    socket.on("guide", (data) => {
+        console.log( "guide button pressed" );
+        io.emit('assignOtherRole', "guide");         //to all connected clients
+        //io.socket.emit("color_change", {r:255, g:0, b:0});  //to everyone but sender
     });
 
     //question 1: how do you continuously update the network, e.g., users position and orientation?

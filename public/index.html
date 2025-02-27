@@ -5,7 +5,10 @@
         <meta charset="utf-8" />
         
         <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+        <script src="js/gameController.js"></script>
+        
     </head>
 
     <body>
@@ -17,10 +20,23 @@
             <a-assets timeout="10000">
                 <img id="maze_texture" src="assets/images/mossy_brick_diff_4k.jpg" crossorigin="anonymous">
                 <a-asset-item id="maze_model"response-type="arraybuffer" src="assets/models/maze.gltf"></a-asset-item>
+                <a-asset-item id="mazeRooms_model"response-type="arraybuffer" src="assets/models/mazeRooms.gltf"></a-asset-item>
+                <a-asset-item id="navMesh" response-type="arraybuffer" src="assets/models/navMesh.gltf"></a-asset-item>
             </a-assets>
-            <a-entity camera wasd-controls look-controls position="0 1.6 0">
-                <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
-            </a-entity>
+
+            <!--CameraRig setup uses nav meshes-->
+            <a-entity
+            id="cameraRig"
+                position="4 0 4"
+                rotation="0 0 0"
+                movement-controls="speed: 0.2; constrainToNavMesh: true;"
+            >
+                <a-entity id="camera" camera position="0 1.65 0" look-controls>
+                    <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
+                </a-entity> 
+            </a-entity
+
+            ><!-- End Camera Rig -->
 
             <a-entity class="ground"  geometry="primitive:plane; width:14; height:14;" material="color:white;" position="0 0.01 0" rotation="-90 0 0"></a-entity>
 
@@ -42,10 +58,13 @@
                 <a-entity position="0 0.3 0" geometry="primitive:box; width:0.5; depth:0.5; height:0.6;" material="color:rgb(255, 255, 255)" shadow></a-entity>
             </a-entity>
 
+            <a-gltf-model id="Navmesh" nav-mesh visible="true" gltf-model="#navMesh" ></a-gltf-model>
             <a-entity id="maze">
-                <a-entity id="maze" position="0 1 -30"  scale="1 1 1"  gltf-model="#maze_model" material="color:rgb(0, 255, 0)" shadow></a-entity>
+                <a-entity id="maze" position="0 1 0" gltf-model="#maze_model" shadow></a-entity>
+                <a-entity id="mazeRooms" position="0 1 0"  gltf-model="#mazeRooms_model" shadow></a-entity>
             </a-entity>
-            <a-entity environment="preset:default;"></a-entity>
+            
+            <a-entity environment="preset:default; playArea:10; stageSize:300"></a-entity>
         </a-scene>
 
         <!-- this is magic code created when the node server runs -->
@@ -55,19 +74,27 @@
         <script>
             const socket = io();
 
+            let playerRole = "unassigned";
+            
             socket.on('connect', (userData) => {
                 console.log('I exist!');
 
                 //put code here so that we know that socket.io has initailized ...
                 document.querySelector('#red_button').querySelector('.button').addEventListener('click', function(){
-                    socket.emit('red');
+                    assignRole("runner");
                 });
 
                 document.querySelector('#blue_button').querySelector('.button').addEventListener('click', function(){
-                    socket.emit('blue');
+                    assignRole("guide");
                 });
             });
 
+            function assignRole(buttonID)
+            {
+            playerRole = buttonID;
+            console.log("I am a "+playerRole);
+            socket.emit(playerRole);
+            }
             //listen to event from server
             socket.on('color_change', (data) => {
                 let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
@@ -75,6 +102,30 @@
                 //document.body.style.backgroundColor = colorStr;
                 document.querySelector('a-scene').setAttribute('background', {color:colorStr});
             });
+            //need to teleport players
+            socket.on('assignOtherRole', (data) => {
+               
+                if(data == "runner")
+                {   
+                    //assigns a role only to the person who didn't click the button, the opposite of the one the player who chose picked. 
+                    if(playerRole=="unassigned")
+                    {
+                        console.log("I am a guide");
+                        playerRole = "guide";
+                    }
+                }
+                //if the player clicked the guider button, make the other player the runner
+                else if (data == "guider")
+                {
+                    if(playerRole=="unassigned")
+                    {
+                        console.log("I am a runner");
+                        playerRole = "runner";
+                    }
+                }
+                
+            });
+            
         </script>
     </body>
 </html>

@@ -3,9 +3,6 @@
 		"generator":"Khronos glTF Blender I/O v4.3.47",
 		"version":"2.0"
 	},
-	"extensionsUsed":[
-		"KHR_materials_specular"
-	],
 	"scene":0,
 	"scenes":[
 		{
@@ -24,31 +21,22 @@
 				0,
 				0,
 				0.7071068286895752
-			],
-			"translation":[
-				9.495694160461426,
-				0,
-				8.024970054626465
 			]
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"extensions":{
-				"KHR_materials_specular":{
-					"specularFactor":0
-				}
-			},
-			"name":"initialShadingGroup",
+			"name":"Material.001",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0.015487631782889366,
-					0.05343322455883026,
-					0,
+					0.022156570106744766,
+					0.11083568632602692,
+					0.02714083530008793,
 					1
 				],
-				"metallicFactor":0
+				"metallicFactor":0,
+				"roughnessFactor":0.5
 			}
 		}
 	],
@@ -72,15 +60,15 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":6024,
+			"count":6600,
 			"max":[
-				31.548105239868164,
-				15.236224174499512,
+				25.270008087158203,
+				-13.469100952148438,
 				2.498224973678589
 			],
 			"min":[
-				-48.486026763916016,
-				-31.35148048400879,
+				-54.764122009277344,
+				-78.65792846679688,
 				-4.77987003326416
 			],
 			"type":"VEC3"
@@ -88,51 +76,51 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":6024,
+			"count":6600,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":6024,
+			"count":6600,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":8304,
+			"count":9096,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":72288,
+			"byteLength":79200,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":72288,
-			"byteOffset":72288,
+			"byteLength":79200,
+			"byteOffset":79200,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":48192,
-			"byteOffset":144576,
+			"byteLength":52800,
+			"byteOffset":158400,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":16608,
-			"byteOffset":192768,
+			"byteLength":18192,
+			"byteOffset":211200,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":209376,
+			"byteLength":229392,
 			"uri":"maze.bin"
 		}
 	]

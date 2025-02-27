@@ -8,6 +8,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aframe-extras": "^7.5.4",
     "express": "^4.21.2",
     "socket.io": "^4.8.1"
   },
