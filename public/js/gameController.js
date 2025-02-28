@@ -44,6 +44,14 @@ function moveDoor(door){
     const greenDoor = document.querySelector('#greenDoor');
     const blueDoor = document.querySelector('#blueDoor');
 
+    const nav = document.querySelector('#navmesh');
+    const allnav = document.querySelector('#allnavmesh');
+    const rednav = document.querySelector('#rednavmesh');
+    const yellownav = document.querySelector('#yellownavmesh');
+    const greennav = document.querySelector('#greennavmesh');
+    const bluenav = document.querySelector('#bluenavmesh');
+    
+
     if(door == "red")
     {
         
@@ -53,6 +61,7 @@ function moveDoor(door){
             console.log("closing red door");
             redDoor.setAttribute('doorInfo','open:false');
             closeDoor(redDoor);
+            nav.setAttribute('gltf-model',allnav.getAttribute("gltf-model"))
         }
         else
         {
@@ -60,6 +69,8 @@ function moveDoor(door){
             console.log("opening red door");
             redDoor.setAttribute('doorInfo','open:true');
             openDoor(redDoor);
+            console.log()
+            nav.setAttribute('gltf-model',rednav.getAttribute("gltf-model"));
         }
     }
     else if (door == "yellow")
@@ -69,12 +80,14 @@ function moveDoor(door){
             //close the yellow door
             yellowDoor.setAttribute('doorInfo','open:false');
             closeDoor(yellowDoor);
+            nav.setAttribute('gltf-model',allnav.getAttribute("gltf-model"))
         }
         else
         {
             //open the red door and close all others
             yellowDoor.setAttribute('doorInfo','open:true');
             openDoor(yellowDoor);
+            nav.setAttribute('gltf-model',yellownav.getAttribute("gltf-model"));
         }
     }
     else if (door == "green")
@@ -84,12 +97,14 @@ function moveDoor(door){
             //close the red door
             greenDoor.setAttribute('doorInfo','open:false');
             closeDoor(greenDoor);
+            nav.setAttribute('gltf-model',allnav.getAttribute("gltf-model"))
         }
         else
         {
             //open the red door and close all others
             greenDoor.setAttribute('doorInfo','open:true');
             openDoor(greenDoor);
+            nav.setAttribute('gltf-model',greennav.getAttribute("gltf-model"));
         }
     }
     else if (door == "blue")
@@ -99,12 +114,14 @@ function moveDoor(door){
             //close the red door
             blueDoor.setAttribute('doorInfo','open:false');
             closeDoor(blueDoor);
+            nav.setAttribute('gltf-model',allnav.getAttribute("gltf-model"))
         }
         else
         {
             //open the red door and close all others
             blueDoor.setAttribute('doorInfo','open:true');
             openDoor(blueDoor);
+            nav.setAttribute('gltf-model',bluenav.getAttribute("gltf-model"));
         }
     }
     
