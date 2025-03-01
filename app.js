@@ -31,36 +31,44 @@ io.on('connection', (socket) => {
     socket.on("runner", (data) => {
         console.log( "runner button pressed" );
         io.emit('assignOtherRole', "runner");       //to all connected clients
-        //io.socket.emit("color_change", {r:255, g:0, b:0});  //to everyone but sender
     });
     socket.on("guide", (data) => {
         console.log( "guide button pressed" );
         io.emit('assignOtherRole', "guide");         //to all connected clients
-        //io.socket.emit("color_change", {r:255, g:0, b:0});  //to everyone but sender
     });
-
+    
     socket.on("endmaze", (data) => {
         console.log( "maze end reached" );
         io.emit('competitive_start', "guide");         //to all connected clients
-        //io.socket.emit("color_change", {r:255, g:0, b:0});  //to everyone but sender
+    });
+    //when the runner wins this is called
+    socket.on("runnerwins", (data) => {
+        console.log( "runner wins the game" );
+        io.emit('display_winner', "runner");         //to all connected clients
+    });
+    //when the guide wins this is called
+    socket.on("guidewins", (data) => {
+        console.log( "guide wins the game" );
+        io.emit('display_winner', "guide");         //to all connected clients
     });
 
     // door signal codes
+    //open and close the red door
     socket.on("togglered", (data) => {
         console.log( "red door toggle" );
         io.emit('door_control', "red");         //to all connected clients
     });
-
+    //open and close the blue door
     socket.on("toggleblue", (data) => {
         console.log( "blue door toggle" );
         io.emit('door_control', "blue");         //to all connected clients
     });
-
+    //open and close the green door
     socket.on("togglegreen", (data) => {
         console.log( "green door toggle" );
         io.emit('door_control', "green");         //to all connected clients
     });
-
+    //open and close the yellow door
     socket.on("toggleyellow", (data) => {
         console.log( "yellow door toggle" );
         io.emit('door_control', "yellow");         //to all connected clients
