@@ -85,8 +85,8 @@
                     <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
                     <!-- endscreen for when somebody wins -->
                     <a-entity id="endScreen" position="0 0 -1.5" visible="false">
-                            <a-text id="endScreenText" color="green" value="winner is TBD" align="center" scale="2 2 2"> </a-text>
-                        <a-entity class="buttonHolder" position="0 -1 -2">
+                            <a-text id="endScreenText" color="green" value="Winner is TBD" align="center" scale="1 1 1"> </a-text>
+                        <a-entity id="endButtonHolder"class="buttonHolder" position="0 -1 1">
                             <a-entity id ="buttonConfirm"class="button interactive" onclick="restart();" geometry="primitive:box; width:1.5; depth:0.1; height:0.5;" material="color:rgb(50, 255, 50)"
                                 animation__mouseenter="property:material.color; type:color; to:rgb(0, 255, 0); startEvents:mouseenter; dur:200"
                                 animation__mouseleave="property:material.color; type:color; to:rgb(50, 255, 50); startEvents:mouseleave; dur:200"
@@ -454,7 +454,10 @@
                 else{
                     document.querySelector('#lose_sfx').play();
                 }
+
+                
                 document.querySelector('#endScreenText').setAttribute("value","The "+data+" wins")
+                document.querySelector('#endButtonHolder').setAttribute("position","0 -1 -2")
                 document.querySelector('#endScreen').setAttribute("visible",true)
                 //display winner message to both players
             });
